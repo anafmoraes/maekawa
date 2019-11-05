@@ -17,9 +17,4 @@ class Client(Thread):
         s.connect(('127.0.0.1', self.port))   
 
         # 2- Envia mensagem para o peer e espera uma resposta => 1 thread para cada envio. Espera todas as respostas com o join
-        s.send("REQUEST")
-
-        message = s.recv(128)
-        print ("Recebendo mensagem", message)
-        
-
+        s.send(self.message)

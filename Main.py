@@ -36,10 +36,10 @@ def main():
             thread2 = []
             print("Quero entrar na seção crítica")
 
-            #Mover ess bloco para uma função sendMessage("ASK")
+            # Mover ess bloco para uma função sendMessage("ASK")
             # Envio mensagem para cada peer do meu subconjunto
             for i in range(len(port)):
-                thread2.append(Client(port[i]))
+                thread2.append(Client(port[i], "ASK"))
                 thread2[i].start()
             # Espero resposta de cada peer do meu subconjunto
             for i in range(len(port)):
@@ -62,6 +62,7 @@ def main():
                     else:
                         clientsocket = onhold.pop()
                         sendTo(p, "OK")
+
                     answers = 0
                     accessing = False
                     break
