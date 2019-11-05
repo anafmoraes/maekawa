@@ -61,11 +61,12 @@ def main():
                         voted: False
                     else:
                         clientsocket = onhold.pop()
-                        sendTo(p, "OK")
+                        sendTo(clientsocket, "OK")
 
                     answers = 0
                     accessing = False
                     break
+    sendMessage("EXIT")
                     
 
     print("Peer finalizado!") 
