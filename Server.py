@@ -23,15 +23,17 @@ class Server(Thread):
             # 1: abre uma thread para tratar a mensagem
             data = self.clientsocket.recv(128)
             if (data[2] == "ASK"):
+                # Estou acessando a seção crítica ou já respondi uma REQUEST com OK
                 if(voted | acessing):
                     onhold.add(self.clientsocket)
                     print("Requisição em espera...")
                 else:
                     self.clientsocket.send("OK")
             elif (data[2] == "OK"):
-                answers += 1
+                self.__class__answers += 1
                 print("Aumenta resposta")
             elif (data[2] == "FREE"):
+                # Caso a fila esteja vazia, a máquina j atualiza seu status para mostrar que não enviou nenhuma mensagem REPLY desde o recebimento da última mensagem RELEASE
                 if(len(onhold) == 0):
                     voted = False
                 else:

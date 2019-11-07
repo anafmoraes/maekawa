@@ -5,13 +5,13 @@ import pickle
 class Client(Thread):
 
     # Constructor
-    def __init__(self, port):
+    def __init__(self, port, message):
         Thread.__init__(self)
         self.port = port
+        self.message = message
 
     # Execute Client
     def run(self):
-    
         # 1- Se conecta com cada peer do seu subconjunto pela porta do servidor do peer correspondende
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(('127.0.0.1', self.port))   
